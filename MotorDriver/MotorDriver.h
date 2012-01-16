@@ -1,20 +1,14 @@
-/*
-  MotorControl.h Library for controlling a motor using PWM commands
- Created by OpenSource, July 30, 2010.
- Version 0.3
 
- For a description of the library, check the MotorControl.ccp file.
- */
 
-#ifndef MotorControl_h
-#define MotorControl_h
+#ifndef MotorDriver_h
+#define MotorDriver_h
 
 #include "WProgram.h"
 
-class MotorControl
+class MotorDriver
 {
 public:
-  MotorControl(int pinFwd,int pinRev,int pinPwm);
+  MotorDriver(int pinFwd,int pinRev,int pinPwm);
 
   void SpeedWrite(int Speed);
   void SpeedStepUp(int PwmStepUp);
