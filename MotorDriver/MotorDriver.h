@@ -1,31 +1,21 @@
 
-
 #ifndef MotorDriver_h
 #define MotorDriver_h
 
-#include "WProgram.h"
+#include "Arduino.h"
 
 class MotorDriver
 {
 public:
   MotorDriver(int pinFwd,int pinRev,int pinPwm);
-
-  void SpeedWrite(int Speed);
-  void SpeedStepUp(int PwmStepUp);
-  void SpeedStepDown(int PwmStepDown);
-
-  char Direction();
-  char _Direction;
-
-  int SpeedRead();
+  void setSpeed(int speed);
+  int getSpeed();
 
 private:
   int _pinFwd;
   int _pinRev;
   int _pinPwm;
-  int _Pwm;
-  int _PwmStepUp;
-  int _PwmStepDown;
-  int _ConstrainPwm;
+  int _speed;
+  int _pwm;
 };
 #endif 
