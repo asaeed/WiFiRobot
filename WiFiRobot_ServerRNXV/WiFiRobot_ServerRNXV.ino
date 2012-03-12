@@ -29,7 +29,7 @@ void setup()
   Serial.println("uart set");
   
   
-  if (rnxv.connect("SecondFloor", "firstfloor99"))
+  if (rnxv.connect("QJ5D4", "Y3DJ793Y8RZBFHYC"))
   {
     Serial.println("connected");
   } else {
@@ -64,9 +64,9 @@ void loop()
   delay(1000);
   */
   
-  handleSerial();
+  //handleSerial();
   
-  /*
+  
   while(Serial1.available() > 0) {
     Serial.write(Serial1.read());
   }
@@ -74,7 +74,7 @@ void loop()
   while(Serial.available()) { // Outgoing data
     Serial1.write(Serial.read());
   }
-  */
+  
 }
 
 

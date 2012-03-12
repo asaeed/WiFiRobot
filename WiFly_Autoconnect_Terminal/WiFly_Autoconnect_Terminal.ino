@@ -25,14 +25,14 @@ void setup() {
   Serial.println("\n\r\n\rWiFly Shield Terminal Routine");
   
   WiFly.begin();
-  
+  /*
   if (!WiFly.join(ssid, passphrase)) {
     Serial.println("Association failed.");
     while (1) {
       // Hang on failure.
     }
   }
-  
+  */
   Serial.println("Associated!");
 }
 

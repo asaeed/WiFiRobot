@@ -1,5 +1,5 @@
 
-#include "WiFly.h"
+#include "RNXV.h"
 #include "MotorDriver.h"
 
 #define motorAPWM 11
@@ -12,18 +12,31 @@
 MotorDriver leftMotor = MotorDriver(motorAIN1, motorAIN2, motorAPWM);
 MotorDriver rightMotor = MotorDriver(motorBIN1, motorBIN2, motorBPWM);
 
-WiFlyClient client("192.168.1.101", 800);
+int loopCount;
+RNXV rnxv = RNXV();
 
 void setup() {
   
   Serial.begin(9600);
   Serial1.begin(9600);
+  Serial.println("setup begin");
   
-  WiFly.setUart(&Serial1);
-  WiFly.begin();
+  rnxv.setUart(&Serial1);
+  Serial.println("uart set");
   
-  Serial1.println("set comm idle 2");  // close an inactive conn in 2 seconds
-  WiFly.join("SecondFloor", "firstfloor99");
+  rnxv.connect("QJ5D4","Y3DJ793Y8RZBFHYC");
+  
+  rnxv.sendCommand("set ip proto 1", "AOK");
+  rnxv.sendCommand("set ip host 192.168.1.7", "AOK");
+  rnxv.sendCommand("set ip remote 3000", "AOK");
+  rnxv.sendCommand("set ip local 4000", "AOK");
+  rnxv.sendCommand("save", "AOK");
+  rnxv.sendCommand("reboot", "READY");
+  
+  rnxv.sendCommand("join", "AOK");
+  
+  loopCount = 0;
+  Serial.println("setup end");
 }
 
 void loop() 
@@ -40,31 +53,21 @@ void loop()
   delay(1000);
   */
   
-  getData();
+  sendData();
+  receiveData();
 }
 
-void getData()
+void sendData()
 {
-   if (client.available()) {
-    char c = client.read();
-    Serial.print(c);
-  }
-  
-  if (!client.connected()) {
-    //delay(100);
-    sendRequest();
-  }
+  loopCount++;
+  Serial1.print(loopCount);
+  Serial1.print("here is a string of data being sent back and forth");
+  delay(200);
 }
 
-void sendRequest()
+void receiveData()
 {
-  Serial.println();
-  Serial.println("connecting...");
-  if (client.connect()) {
-    Serial.println("connected");
-    delay(100); // seems to prevent an infrequent failed connection
-    client.println("GET /robotServer/server.php");
-    client.println();
-  }   
+  while (Serial1.available() > 0) {
+    Serial.write(Serial1.read());
+  }
 }
-

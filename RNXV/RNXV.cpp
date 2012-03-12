@@ -70,6 +70,7 @@ bool RNXV::connect(char* ssid, char* phrase)
   println("reboot");
   awaitResponse("READY");
   
+  delay(2000);
   println("join");
   awaitResponse("Associated!");
 

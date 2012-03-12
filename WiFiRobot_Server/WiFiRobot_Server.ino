@@ -29,10 +29,10 @@ void setup()
   Serial.println("uart set");
   WiFly.begin();
    
-  WiFly.join("SecondFloor", "firstfloor99");
+  //WiFly.join("SecondFloor", "firstfloor99");
   
   Serial.print("IP: ");
-  Serial.println(WiFly.ip());
+  //Serial.println(WiFly.ip());
   
   server.begin();
   
@@ -53,9 +53,9 @@ void loop()
   delay(1000);
   */
   
-  handleSerial();
+  //handleSerial();
   
-  /*
+  
   while(Serial1.available() > 0) {
     Serial.write(Serial1.read());
   }
@@ -63,7 +63,7 @@ void loop()
   while(Serial.available()) { // Outgoing data
     Serial1.write(Serial.read());
   }
-  */
+  
 }
 
 
