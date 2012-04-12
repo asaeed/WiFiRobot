@@ -29,7 +29,7 @@ void setup()
   Serial.println("uart set");
   
   
-  if (rnxv.connect("QJ5D4", "Y3DJ793Y8RZBFHYC"))
+  if (rnxv.join("SecondFloor", "firstfloor99"))
   {
     Serial.println("connected");
   } else {
@@ -43,9 +43,7 @@ void setup()
   //rnxv.sendCommand("reboot", "*READY*"); 
   //rnxv.sendCommand("get com");
   
-  Serial1.flush();
-  delay(1000);
-  //rnxv.exitCommandMode();
+  rnxv.enterCommandMode();
   
   Serial.println("setup end");
 }
